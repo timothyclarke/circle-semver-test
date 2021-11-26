@@ -1,0 +1,4 @@
+version: 2.1
+
+description: |
+  Tag commits based on PR message

@@ -1,0 +1,6 @@
+jobs:
+  - version-from-commit-subject:
+      filters:
+        branches:
+          only:
+            - master
