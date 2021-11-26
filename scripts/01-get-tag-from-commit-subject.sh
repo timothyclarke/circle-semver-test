@@ -34,7 +34,7 @@ CheckIncrement() {
         echo "SEMVER in commit indicated to skip orb release"
         echo "export PR_MESSAGE=\"BotComment: Versioning was skipped due to [semver:skip] in commit message.\""  >> "$BASH_ENV"
     else
-        GetAndCreateTag
+        GetCurrentTag
     fi
 }
 
