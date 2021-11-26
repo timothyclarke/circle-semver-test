@@ -10,12 +10,11 @@ GetIncrement() {
 
 GetTicket() {
     JIRA_TICKET=$(echo "${COMMIT_SUBJECT}" | sed -En 's/.*((JIRA|TEST)\-[[:digit:]]+).*/\1/p')
-    echo "Commit subject: ${COMMIT_SUBJECT}"
     echo "export JIRA_TICKET=\"$JIRA_TICKET\""  >> "$BASH_ENV"
 }
 
 GetCurrentTag(){
-    CURRENT_TAG=$(git for-each-ref --sort=creatordate --format '%(tag)' refs/tags| sed -En 's/.*(v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)).*/\1/p'| tail -1)
+    CURRENT_TAG=$(git for-each-ref --sort=creatordate --format '%(refname)' refs/tags| sed -En 's/.*(v([[:digit:]]+)\.([[:digit:]]+)\.([[:digit:]]+)).*/\1/p'| tail -1)
     echo "Current version is: ${CURRENT_TAG}"
     echo "export CURRENT_TAG=\"$CURRENT_TAG\""  >> "$BASH_ENV"
 }
