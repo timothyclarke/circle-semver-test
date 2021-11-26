@@ -26,7 +26,7 @@ Main() {
       Patch
     fi
     echo "New Version is: ${NEW_VERSION}"
-    echo "export NEW_VERSION=\"$NEW_GIT_VERSION\""  >> "$BASH_ENV"
+    echo "export NEW_GIT_VERSION=\"$NEW_VERSION\""  >> "$BASH_ENV"
 }
 
 
