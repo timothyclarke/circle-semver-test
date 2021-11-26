@@ -25,3 +25,6 @@ steps:
   - run:
       name: Create New Tag
       command: source scripts/02-decide-new-tag.sh
+  - run:
+      name: Git Tag and Push
+      command: source scripts/03-tag-and-push.sh

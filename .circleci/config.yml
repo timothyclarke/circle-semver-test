@@ -20,6 +20,9 @@ jobs:
             - run:
                 command: source scripts/02-decide-new-tag.sh
                 name: Create New Tag
+            - run:
+                command: source scripts/03-tag-and-push.sh
+                name: Git Tag and Push
 version: 2.1
 workflows:
     primary:
