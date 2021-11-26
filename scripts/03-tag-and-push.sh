@@ -1,6 +1,8 @@
 
 Main() {
+    echo "New Version is ${NEW_GIT_VERSION}"
     git tag ${NEW_GIT_VERSION}
+    ssh-keyscan github.com >> ~/.ssh/known_hosts
     git push --tags
 }
 
