@@ -3,4 +3,4 @@ jobs:
       filters:
         branches:
           only:
-            - master
+            - main
