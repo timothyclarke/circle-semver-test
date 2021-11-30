@@ -1,0 +1,6 @@
+jobs:
+  - branch-test:
+      filters:
+        branches:
+          exclude:
+            - main

@@ -1,0 +1,22 @@
+description: >
+  Version from circleci git params
+
+docker:
+  - image: cimg/base:edge
+environment:
+  PIPELINE_CI_BRANCH: << pipeline.git.branch >>
+steps:
+  - when:
+      condition:
+        equal: [ main, << pipeline.git.branch >> ]
+      steps:
+        - run:
+            name: Pipeline Main is << pipeline.git.branch >>
+            command: echo "Pipe line is main - << pipeline.git.branch >> "
+  - unless:
+      condition:
+        equal: [ main, << pipeline.git.branch >> ]
+      steps:
+        - run:
+            name: Pipeline ALT is << pipeline.git.branch >>
+            command: echo "Pipe line is ALT - << pipeline.git.branch >> "
