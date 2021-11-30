@@ -1,6 +1,32 @@
 description: |
     Tag commits based on PR message
 jobs:
+    branch-test:
+        description: |
+            Version from circleci git params
+        docker:
+            - image: cimg/base:edge
+        environment:
+            PIPELINE_CI_BRANCH: << pipeline.git.branch >>
+        steps:
+            - when:
+                condition:
+                    equal:
+                        - main
+                        - << pipeline.git.branch >>
+                steps:
+                    - run:
+                        command: echo "Pipe line is main - << pipeline.git.branch >> "
+                        name: Pipeline Main is << pipeline.git.branch >>
+            - unless:
+                condition:
+                    equal:
+                        - main
+                        - << pipeline.git.branch >>
+                steps:
+                    - run:
+                        command: echo "Pipe line is ALT - << pipeline.git.branch >> "
+                        name: Pipeline ALT is << pipeline.git.branch >>
     version-from-commit-subject:
         description: |
             Promote a commit a semantic version release. It assumes the context of a GitHub pull request, and promotion of the code to a new major/minor/patch version is based on information that must be contained in the subject of the commit that merges the pull request. Namely, the commit subject must include both a ticket reference, and the `[semver:FOO]` pattern, where FOO is major, minor, patch, or skip (to skip promotion). e.g. 'Merge pull request #XX from some-branch JIRA-123 [semver:minor]'
@@ -25,6 +51,13 @@ jobs:
                 name: Git Tag and Push
 version: 2.1
 workflows:
+    alt-test:
+        jobs:
+            - branch-test:
+                filters:
+                    branches:
+                        ignore:
+                            - main
     primary:
         jobs:
             - version-from-commit-subject:

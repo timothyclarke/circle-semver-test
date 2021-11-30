@@ -2,5 +2,5 @@ jobs:
   - branch-test:
       filters:
         branches:
-          exclude:
+          ignore:
             - main
